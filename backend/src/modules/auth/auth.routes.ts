@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { authController } from "./auth.module";
+import { authenticateJwt } from "../../common/strategies/jwt.strategy";
 
 
 
@@ -17,6 +18,9 @@ authRoutes.post("/forgot-password", authController.forgotPassword);
 
 //reset password
 authRoutes.post("/reset-password", authController.resetPassword);
+
+//logout
+authRoutes.post("/logout", authenticateJwt, authController.logout);
 
 // Refresh token
 authRoutes.get("/refresh-token", authController.refreshToken);

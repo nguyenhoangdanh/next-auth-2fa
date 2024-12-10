@@ -265,4 +265,8 @@ export class AuthService {
         }
         
     }
+
+    public async logout(sessionId: string): Promise<any> {
+        return await SessionModel.findByIdAndDelete(sessionId);
+    }
 }

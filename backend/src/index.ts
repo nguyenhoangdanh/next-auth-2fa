@@ -8,6 +8,7 @@ import { HTTPSTATUS } from './config/http.config';
 import { asyncHandler } from './middlewares/asyncHandler';
 import { authRoutes } from './modules/auth/auth.routes';
 import connectDatabase from './database/database';
+import passport from './middlewares/passport';
 
 const app = express();
 const BASE_PATH = config.BASE_PATH;
@@ -23,6 +24,7 @@ app.use(
 )
 
 app.use(cookieParser());
+app.use(passport.initialize());
 
 app.get(`/`, 
     asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
